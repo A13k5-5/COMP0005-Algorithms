@@ -23,4 +23,8 @@ if __name__ == "__main__":
     union(7, 1, network)
     union(4, 3, network)
     union(9, 8, network)
+    union(5, 0, network)
+    union(6, 1, network)
+    union(4, 8, network)
+    union(5, 4, network)
     print(network)
