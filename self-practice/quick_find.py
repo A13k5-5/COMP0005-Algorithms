@@ -1,6 +1,3 @@
-# 1 - Union-find
-
-
 def init(n):
     return [i for i in range(n)]
 
