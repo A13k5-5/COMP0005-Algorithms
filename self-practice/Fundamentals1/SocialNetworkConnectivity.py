@@ -22,6 +22,10 @@ def everyone_connected(network):
     return all([x == network[0] for x in network])
 
 
+# Union is O(log n) operation which is done n times. update_roots is of O(log n)
+# time complexity and everyone_connected is O(n). Thus this algorithm is O(n * log n).
+
+
 def earliest_time_everyone_connected(n, friend_requests):
     network, size = init(n)
     for i, request in enumerate(friend_requests):
