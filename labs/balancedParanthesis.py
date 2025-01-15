@@ -13,4 +13,7 @@ def balanced_brackets(str):
 
 
 if __name__ == "__main__":
-    print(balanced_brackets("(x) + (x - 2) - a[3] / [a10]"))
+    print(balanced_brackets("(x) + (x - 2) - a[3] / [a10]"))  # True
+    print(balanced_brackets("(x) + (x - 2) - a[3] / [a10"))  # False
+    print(balanced_brackets("(x) + (x - 2) - a[3] / [a10]]"))  # False
+    print(balanced_brackets("((x) + (x - 2)) - a[3] / [a10]"))  # True
