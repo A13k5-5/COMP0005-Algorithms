@@ -23,6 +23,23 @@ def minCoinChangeTopDown(coins, amount):
         return -1
 
 
+def minCoinChangeBottomUp(coins, amount):
+    coins.sort()
+    dp = [0] * (amount + 1)
+
+    for i in range(1, amount + 1):
+        minn = float("inf")
+
+        for coin in coins:
+            diff = i - coin
+            if diff < 0:
+                break
+            minn = min(minn, 1 + dp[diff])
+
+        dp[i] = minn
+    return dp[amount]
+
+
 if __name__ == "__main__":
     coins = [1, 2, 5, 10, 20, 50]
     amount = 7
