@@ -1,4 +1,6 @@
 def minCostClimbingStairs(stairs):
+    if len(stairs) == 0:
+        return 0
     if len(stairs) < 2:
         return stairs[-1]
 
