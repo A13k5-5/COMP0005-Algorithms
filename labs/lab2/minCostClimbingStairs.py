@@ -7,7 +7,7 @@ def minCostClimbingStairs(stairs):
 
     for i in range(2, len(stairs)):
         dp[i] = min(dp[i - 1], dp[i - 2]) + stairs[i]
-    return dp[-1]
+    return min(dp[-1], dp[-2])
 
 
 if __name__ == "__main__":
