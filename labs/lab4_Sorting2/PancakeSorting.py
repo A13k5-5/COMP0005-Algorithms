@@ -68,7 +68,7 @@ def pancakeSort2(a):
 
 if __name__ == "__main__":
     a = [1, 3, 2, 67, 8, 23, 5, 234]
-    # a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # a = [3, 2, 4, 1]
+    a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    a = [3, 2, 4, 1]
     # print(len(pancakeSort(a)))
     print(pancakeSort2(a))
