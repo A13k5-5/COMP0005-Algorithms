@@ -1,6 +1,7 @@
 from PancakeSorting import flipTuple, sortTuple
 
 from collections import deque
+import random
 
 
 def advancedFlip(a, start, end):
@@ -31,17 +32,20 @@ def advancedPancakeSort(a):
         for i in range(len(curState)):
             for j in range(0, i):
                 newState = advancedFlipTuple(curState, j, i)
+                newPath = curFlips + [(j, i)]
                 if newState == goalState:
-                    return list(newState), curFlips + [(j, i)]
+                    return list(newState), newPath
                 if newState in visited:
                     continue
                 visited.add(newState)
-                q.append((newState, curFlips + [(j, i)]))
+                q.append((newState, newPath))
 
 
 if __name__ == "__main__":
     a = [1, 3, 2, 67, 8, 23, 5, 234]
     # a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     # a = [3, 2, 4, 1]
-    a = [1, 8, 9, 3, 2, 7, 6, 5, 4, 10]
+    a = [i for i in range(10)]
+    random.shuffle(a)
+    # a = [1, 8, 9, 3, 2, 7, 6, 5, 4, 10]
     print(advancedPancakeSort(a))
