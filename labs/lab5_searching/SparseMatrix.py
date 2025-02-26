@@ -1,4 +1,33 @@
 class Matrix:
+    """
+    A class to represent a sparse matrix.
+
+    Attributes
+    ----------
+    rows : dict
+        A dictionary to store non-zero values with row and column indices.
+    width : int
+        The number of columns in the matrix.
+    height : int
+        The number of rows in the matrix.
+
+    Methods
+    -------
+    __init__():
+        Initializes an empty sparse matrix.
+    add_val(val, row, col):
+        Adds a value to the matrix at the specified row and column.
+    __str__():
+        Returns a string representation of the matrix with 0s filed in.
+    get(row, col):
+        Retrieves the value at the specified row and column.
+    __add__(mtrx2):
+        Adds two matrices of the same dimensions.
+    __mul__(mtrx2):
+        Multiplies two matrices if the number of columns in the first matrix
+        is equal to the number of rows in the second matrix.
+    """
+
     def __init__(self):
         self.rows = {}
         self.width = 0
@@ -70,19 +99,25 @@ if __name__ == "__main__":
     mtrx.add_val(4, 1, 0)
     mtrx.add_val(5, 1, 1)
     mtrx.add_val(6, 1, 2)
+    mtrx.add_val(7, 2, 0)
+    mtrx.add_val(8, 2, 1)
+    mtrx.add_val(9, 2, 2)
     print(mtrx)
 
     mtrx2 = Matrix()
-    mtrx2.add_val(1, 0, 0)
-    mtrx2.add_val(3, 0, 1)
-    mtrx2.add_val(2, 1, 0)
-    mtrx2.add_val(4, 1, 1)
-    mtrx2.add_val(8, 2, 0)
-    mtrx2.add_val(2, 2, 1)
+    mtrx2.add_val(10, 0, 0)
+    mtrx2.add_val(11, 0, 1)
+    mtrx2.add_val(12, 0, 2)
+    mtrx2.add_val(13, 1, 0)
+    mtrx2.add_val(14, 1, 1)
+    mtrx2.add_val(15, 1, 2)
+    mtrx2.add_val(16, 2, 0)
+    mtrx2.add_val(17, 2, 1)
+    mtrx2.add_val(18, 2, 2)
     print()
     print(mtrx2)
-    # print()
-    # print(mtrx + mtrx2)
+    print()
+    print(mtrx + mtrx2)
 
     print()
     print(mtrx * mtrx2)
