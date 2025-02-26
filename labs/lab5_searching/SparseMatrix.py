@@ -38,7 +38,6 @@ class Matrix:
             raise Exception("Matrices not of same dimension")
 
         result = Matrix()
-
         for row in self.rows:
             for col in self.rows[row]:
                 result.add_val(self.rows[row][col], row, col)
@@ -47,20 +46,43 @@ class Matrix:
             for col in mtrx2.rows[row]:
                 current = result.get(row, col)
                 result.add_val(current + mtrx2.rows[row][col], row, col)
+        return result
 
+    def __mul__(self, mtrx2):
+        if self.height != mtrx2.width:
+            raise Exception("Cant multiply these two")
+
+        result = Matrix()
+        for y in range(self.height):
+            for x in range(mtrx2.width):
+                newEntry = 0
+                for i in range(mtrx2.height):
+                    newEntry += self.get(y, i) * mtrx2.get(i, x)
+                result.add_val(newEntry, y, x)
         return result
 
 
 if __name__ == "__main__":
     mtrx = Matrix()
-    mtrx.add_val(5, 0, 1)
-    mtrx.add_val(1, 1, 1)
+    mtrx.add_val(1, 0, 0)
+    mtrx.add_val(2, 0, 1)
+    mtrx.add_val(3, 0, 2)
+    mtrx.add_val(4, 1, 0)
+    mtrx.add_val(5, 1, 1)
+    mtrx.add_val(6, 1, 2)
     print(mtrx)
 
-    # mtrx2 = Matrix()
-    # mtrx2.add_val(1, 0, 0)
-    # mtrx2.add_val(2, 1, 1)
-    # print()
-    # print(mtrx2)
+    mtrx2 = Matrix()
+    mtrx2.add_val(1, 0, 0)
+    mtrx2.add_val(3, 0, 1)
+    mtrx2.add_val(2, 1, 0)
+    mtrx2.add_val(4, 1, 1)
+    mtrx2.add_val(8, 2, 0)
+    mtrx2.add_val(2, 2, 1)
+    print()
+    print(mtrx2)
     # print()
     # print(mtrx + mtrx2)
+
+    print()
+    print(mtrx * mtrx2)
