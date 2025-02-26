@@ -1,4 +1,4 @@
-class Matrix:
+class SparseMatrix:
     """
     A class to represent a sparse matrix.
 
@@ -66,7 +66,7 @@ class Matrix:
         if self.height != mtrx2.height or self.width != mtrx2.width:
             raise Exception("Matrices not of same dimension")
 
-        result = Matrix()
+        result = SparseMatrix()
         for row in self.rows:
             for col in self.rows[row]:
                 result.add_val(self.rows[row][col], row, col)
@@ -79,9 +79,11 @@ class Matrix:
 
     def __mul__(self, mtrx2):
         if self.height != mtrx2.width:
-            raise Exception("Cant multiply these two")
+            raise Exception(
+                f"Cant multiply matrix of height {self.height} with metrix of width {mtrx2.width}"
+            )
 
-        result = Matrix()
+        result = SparseMatrix()
         for y in range(self.height):
             for x in range(mtrx2.width):
                 newEntry = 0
@@ -92,7 +94,7 @@ class Matrix:
 
 
 if __name__ == "__main__":
-    mtrx = Matrix()
+    mtrx = SparseMatrix()
     mtrx.add_val(1, 0, 0)
     mtrx.add_val(2, 0, 1)
     mtrx.add_val(3, 0, 2)
@@ -104,7 +106,7 @@ if __name__ == "__main__":
     mtrx.add_val(9, 2, 2)
     print(mtrx)
 
-    mtrx2 = Matrix()
+    mtrx2 = SparseMatrix()
     mtrx2.add_val(10, 0, 0)
     mtrx2.add_val(11, 0, 1)
     mtrx2.add_val(12, 0, 2)
