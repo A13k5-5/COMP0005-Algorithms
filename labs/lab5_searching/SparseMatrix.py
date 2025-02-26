@@ -27,6 +27,8 @@ class Matrix:
         return "\n".join(rows)
 
     def get(self, row, col):
+        if row >= self.height or col >= self.width:
+            raise Exception("Out of range")
         if row not in self.rows.keys() or col not in self.rows[row].keys():
             return 0
         return self.rows[row][col]
@@ -55,10 +57,10 @@ if __name__ == "__main__":
     mtrx.add_val(1, 1, 1)
     print(mtrx)
 
-    mtrx2 = Matrix()
-    mtrx2.add_val(1, 0, 0)
-    mtrx2.add_val(2, 1, 1)
-    print()
-    print(mtrx2)
-    print()
-    print(mtrx + mtrx2)
+    # mtrx2 = Matrix()
+    # mtrx2.add_val(1, 0, 0)
+    # mtrx2.add_val(2, 1, 1)
+    # print()
+    # print(mtrx2)
+    # print()
+    # print(mtrx + mtrx2)
