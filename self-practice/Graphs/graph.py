@@ -65,19 +65,18 @@ class BreadthFirstSearch:
         self.s = s
         self.bfs(g, s)
 
-    def bfs(self, g: Graph, v: int):
+    def bfs(self, g: Graph, s: int):
         q = deque()
-        q.append(v)
-        self.marked[v] = True
+        q.append(s)
+        self.marked[s] = True
         while len(q) > 0:
-            w = q.popleft()
-            for n in g.getAdj(w):
-                if self.marked[n]:
+            v = q.popleft()
+            for w in g.getAdj(v):
+                if self.marked[w]:
                     continue
-                # if not yet visited
-                self.edgeTo[n] = w
-                self.marked[n] = True
-                q.append(n)
+                q.append(w)
+                self.marked[w] = True
+                self.edgeTo[w] = v
 
     def hasPathTo(self, v: int):
         return self.marked[v]
