@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Graph:
     def __init__(self, V: int):
         self.E: int = 0
@@ -55,6 +58,42 @@ class DepthFirstSearch:
         return path
 
 
+class BreadthFirstSearch:
+    def __init__(self, g: Graph, s: int):
+        self.marked = [False for _ in range(g.getV())]
+        self.edgeTo = [None for _ in range(g.getV())]
+        self.s = s
+        self.bfs(g, s)
+
+    def bfs(self, g: Graph, v: int):
+        q = deque()
+        q.append(v)
+        self.marked[v] = True
+        while len(q) > 0:
+            w = q.popleft()
+            for n in g.getAdj(w):
+                if self.marked[n]:
+                    continue
+                # if not yet visited
+                self.edgeTo[n] = w
+                self.marked[n] = True
+                q.append(n)
+
+    def hasPathTo(self, v: int):
+        return self.marked[v]
+
+    def pathTo(self, v: int):
+        if not self.hasPathTo(v):
+            return None
+        x = v
+        path = []
+        while x != self.s:
+            path.append(x)
+            x = self.edgeTo[x]
+        path.append(x)
+        return path
+
+
 if __name__ == "__main__":
     g: Graph = Graph(13)
     g.addEdge(0, 6)
@@ -71,6 +110,9 @@ if __name__ == "__main__":
     g.addEdge(9, 11)
     g.addEdge(11, 12)
     # print(g)
-    d: DepthFirstSearch = DepthFirstSearch(g, 0)
-    print(d.pathTo(5))
-    print(d.marked)
+    # d: DepthFirstSearch = DepthFirstSearch(g, 0)
+    # print(d.pathTo(5))
+    # print(d.marked)
+    b: BreadthFirstSearch = BreadthFirstSearch(g, 0)
+    print(b.marked)
+    print(b.pathTo(3))
