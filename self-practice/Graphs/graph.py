@@ -62,20 +62,21 @@ class BreadthFirstSearch:
     def __init__(self, g: Graph, s: int):
         self.marked = [False for _ in range(g.getV())]
         self.edgeTo = [None for _ in range(g.getV())]
+        self.distToSource = [None for _ in range(g.getV())]
         self.s = s
         self.bfs(g, s)
 
     def bfs(self, g: Graph, s: int):
         q = deque()
         q.append(s)
-        self.marked[s] = True
+        self.distToSource[s] = 0
         while len(q) > 0:
             v = q.popleft()
             for w in g.getAdj(v):
-                if self.marked[w]:
+                if self.distToSource[w] is not None:
                     continue
                 q.append(w)
-                self.marked[w] = True
+                self.distToSource[w] = self.distToSource[v] + 1
                 self.edgeTo[w] = v
 
     def hasPathTo(self, v: int):
@@ -113,5 +114,5 @@ if __name__ == "__main__":
     # print(d.pathTo(5))
     # print(d.marked)
     b: BreadthFirstSearch = BreadthFirstSearch(g, 0)
-    print(b.marked)
     print(b.pathTo(3))
+    print(b.distToSource)
