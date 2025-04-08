@@ -19,7 +19,10 @@ class Graph:
         return self.adj[v]
 
     def __repr__(self):
-        return str(self.adj)
+        s = ""
+        for node in self.adj:
+            s += str(f"{node}: {self.adj[node]}\n")
+        return s
 
 
 if __name__ == "__main__":
