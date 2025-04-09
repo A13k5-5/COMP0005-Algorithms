@@ -94,6 +94,20 @@ class BreadthFirstSearch:
         return path
 
 
+class CC:
+    def __init__(self, g: Graph):
+        pass
+
+    def connected(self, v: int, w: int) -> bool:
+        pass
+
+    def count(self) -> int:
+        pass
+
+    def id(self, v: int) -> int:
+        pass
+
+
 if __name__ == "__main__":
     g: Graph = Graph(13)
     g.addEdge(0, 6)
