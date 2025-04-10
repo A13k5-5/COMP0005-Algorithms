@@ -19,8 +19,8 @@ class Digraph:
 
     def __repr__(self):
         s = ""
-        for node in self.adj:
-            s += str(f"{node}: {self.adj[node]}\n")
+        for v in range(self.V):
+            s += str(f"{v}: {self.adj[v]}\n")
         return s
 
 
