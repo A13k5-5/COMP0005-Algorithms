@@ -142,6 +142,26 @@ class Cycle:
                 self.hasCycle = True
 
 
+class Bipartite:
+    def __init__(self, g: Graph):
+        self.marked = [False for _ in range(g.getV())]
+        # True - red, False - black
+        self.colour = [False for _ in range(g.getV())]
+        self.isBipartite = True
+        for s in range(g.getV()):
+            if not self.marked[s]:
+                self._dfs(g, s)
+
+    def _dfs(self, g: Graph, v: int):
+        self.marked[v] = True
+        for w in g.getAdj(v):
+            if not self.marked[w]:
+                self.colour[w] = not self.colour[v]
+                self._dfs(g, w)
+            elif self.colour[v] == self.colour[w]:
+                self.isBipartite = False
+
+
 if __name__ == "__main__":
     g: Graph = Graph(13)
     g.addEdge(0, 6)
@@ -157,6 +177,11 @@ if __name__ == "__main__":
     g.addEdge(9, 12)
     g.addEdge(9, 11)
     g.addEdge(11, 12)
+
+    g2: Graph = Graph(4)
+    g2.addEdge(0, 1)
+    g2.addEdge(1, 2)
+    g2.addEdge(2, 3)
     # print(g)
     # d: DepthFirstSearch = DepthFirstSearch(g, 0)
     # print(d.pathTo(5))
@@ -167,4 +192,6 @@ if __name__ == "__main__":
     connectedComponents: CC = CC(g)
     # print(connectedComponents.id)
     cycle: Cycle = Cycle(g)
-    print(cycle.hasCycle)
+    # print(cycle.hasCycle)
+    bipartite: Bipartite = Bipartite(g)
+    print(bipartite.isBipartite)
