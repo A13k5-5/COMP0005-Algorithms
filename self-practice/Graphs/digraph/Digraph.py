@@ -17,6 +17,14 @@ class Digraph:
     def getE(self):
         return self.E
 
+    # returns the same digraph with all the edges reversed
+    def reverse(self):
+        r: Digraph = Digraph(self.V)
+        for v in range(self.V):
+            for w in self.adj[v]:
+                r.addEdge(w, v)
+        return r
+
     def __repr__(self):
         s = ""
         for v in range(self.V):
