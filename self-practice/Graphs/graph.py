@@ -123,6 +123,25 @@ class CC:
         return self.id[v]
 
 
+class Cycle:
+    def __init__(self, g: Graph):
+        self.marked = [False for _ in range(g.getV())]
+        self.hasCycle = False
+        for s in range(g.getV()):
+            if not self.marked[s]:
+                self._dfs(g, -1, s)
+
+    # u is the vertex we came from, v is the current vertex
+    def _dfs(self, g: Graph, u: int, v: int):
+        self.marked[v] = True
+        for w in g.getAdj(v):
+            if not self.marked[w]:
+                self._dfs(g, v, w)
+            # if neighbour is marked and is not the vertex we came from, then there is a different way to get there - there exists a cycle
+            elif w != u:
+                self.hasCycle = True
+
+
 if __name__ == "__main__":
     g: Graph = Graph(13)
     g.addEdge(0, 6)
@@ -146,4 +165,6 @@ if __name__ == "__main__":
     # print(b.pathTo(3))
     # print(b.distToSource)
     connectedComponents: CC = CC(g)
-    print(connectedComponents.id)
+    # print(connectedComponents.id)
+    cycle: Cycle = Cycle(g)
+    print(cycle.hasCycle)
