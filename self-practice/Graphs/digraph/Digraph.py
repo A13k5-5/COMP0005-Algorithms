@@ -48,3 +48,18 @@ def sample_digraph() -> Digraph:
     g.addEdge(6, 4)
 
     return g
+
+
+def loadDigraph(filename: str) -> Digraph:
+    with open(filename, "r") as file:
+        lines = [line.strip() for line in file]
+    numVertices = int(lines[0])
+    g: Digraph = Digraph(numVertices)
+    for i in range(1, len(lines)):
+        edge = [int(v.strip()) for v in lines[i].split()]
+        g.addEdge(edge[0], edge[1])
+    return g
+
+
+if __name__ == "__main__":
+    print(loadDigraph("tinyDG.txt"))
