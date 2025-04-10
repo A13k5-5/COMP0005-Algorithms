@@ -20,3 +20,4 @@ class DigraphDfs:
 
 if __name__ == "__main__":
     d: Digraph = sample_digraph()
+    print(d)
