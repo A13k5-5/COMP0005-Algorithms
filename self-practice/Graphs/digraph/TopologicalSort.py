@@ -25,6 +25,17 @@ class TopologicalSort:
 
 
 if __name__ == "__main__":
-    g: Digraph = sample_digraph()
-    topSort: TopologicalSort = TopologicalSort(g)
-    print(topSort.stack)
+    # Read data from tinyDAG.txt
+    with open("tinyDAG.txt", "r") as file:
+        lines = [line.strip() for line in file if line.strip()]
+
+    num_vertices = int(lines[0])
+    g = Digraph(num_vertices)
+
+    for i in range(1, len(lines)):
+        v, w = map(int, lines[i].split())
+        g.addEdge(v, w)
+
+    # Run topological sort
+    topSort = TopologicalSort(g)
+    print(f"Topological order: {topSort.stack}")
