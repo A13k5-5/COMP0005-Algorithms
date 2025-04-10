@@ -7,7 +7,8 @@ class DirectedCycle:
         self.marked = [False for _ in range(g.getV())]
         self.hasCycle = False
         for s in range(g.getV()):
-            self._dfs(g, s)
+            if not self.marked[s]:
+                self._dfs(g, s)
 
     def _dfs(self, g: Digraph, v: int):
         self.marked[v] = True
@@ -15,11 +16,10 @@ class DirectedCycle:
         for w in g.getAdj(v):
             if self.hasCycle:
                 return
-            self.marked[w] = True
-            if self.onStack[w]:
+            elif not self.marked[w]:
+                self._dfs(g, w)
+            elif self.onStack[w]:
                 self.hasCycle = True
-                continue
-            self._dfs(g, w)
         self.onStack[v] = False
 
 
