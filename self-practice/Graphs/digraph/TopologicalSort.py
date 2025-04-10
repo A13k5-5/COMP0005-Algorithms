@@ -4,12 +4,12 @@ from DirectedCycle import DirectedCycle
 
 class TopologicalSort:
     def __init__(self, g: Digraph):
+        self.marked = [False for _ in range(g.getV())]
+        self.stack = []
         directedCycle: DirectedCycle = DirectedCycle(g)
         hasCycle = directedCycle.hasCycle()
         if hasCycle:
             return
-        self.marked = [False for _ in range(g.getV())]
-        self.stack = []
         for s in range(g.getV()):
             if not self.marked[s]:
                 self._dfs(g, s)
