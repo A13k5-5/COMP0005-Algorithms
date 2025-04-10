@@ -1,4 +1,4 @@
-from digraph import Digraph
+from Digraph import Digraph
 
 
 class DepthFirstOrder:

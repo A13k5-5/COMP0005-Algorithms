@@ -1,5 +1,5 @@
-from digraph import Digraph
-from digraph import sample_digraph
+from Digraph import Digraph
+from Digraph import sample_digraph
 
 
 class DigraphDfs:

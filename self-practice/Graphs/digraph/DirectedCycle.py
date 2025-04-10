@@ -1,4 +1,4 @@
-from digraph import Digraph, sample_digraph
+from Digraph import Digraph, sample_digraph
 
 
 class DirectedCycle:
