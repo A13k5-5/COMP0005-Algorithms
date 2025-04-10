@@ -96,16 +96,31 @@ class BreadthFirstSearch:
 
 class CC:
     def __init__(self, g: Graph):
-        pass
+        self.marked = [False for _ in range(g.getV())]
+        self.id = [-1 for _ in range(g.getV())]
+        self.count = 0
+        for s in range(g.getV()):
+            if self.marked[s]:
+                continue
+            self._dfs(g, s)
+            self.count += 1
+
+    def _dfs(self, g: Graph, v: int):
+        self.marked[v] = True
+        self.id[v] = self.count
+        for w in g.getAdj(v):
+            if self.marked[w]:
+                continue
+            self._dfs(g, w)
 
     def connected(self, v: int, w: int) -> bool:
-        pass
+        return self.id[v] == self.id[w]
 
-    def count(self) -> int:
-        pass
+    def getCount(self) -> int:
+        return self.count
 
-    def id(self, v: int) -> int:
-        pass
+    def getId(self, v: int) -> int:
+        return self.id[v]
 
 
 if __name__ == "__main__":
@@ -127,6 +142,8 @@ if __name__ == "__main__":
     # d: DepthFirstSearch = DepthFirstSearch(g, 0)
     # print(d.pathTo(5))
     # print(d.marked)
-    b: BreadthFirstSearch = BreadthFirstSearch(g, 0)
-    print(b.pathTo(3))
-    print(b.distToSource)
+    # b: BreadthFirstSearch = BreadthFirstSearch(g, 0)
+    # print(b.pathTo(3))
+    # print(b.distToSource)
+    connectedComponents: CC = CC(g)
+    print(connectedComponents.id)
