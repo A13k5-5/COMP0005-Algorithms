@@ -5,7 +5,7 @@ class Graph:
     def __init__(self, V: int):
         self.E: int = 0
         self.V: int = V
-        self.adj = {vertex: [] for vertex in range(V)}
+        self.adj: dict[int, list[int]] = {vertex: [] for vertex in range(V)}
 
     def getV(self) -> int:
         return self.V
