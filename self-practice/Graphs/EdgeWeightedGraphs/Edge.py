@@ -20,6 +20,9 @@ class Edge:
     def __eq__(self, other) -> bool:
         return self.weight == other.weight
 
+    def __repr__(self):
+        return f"{self.v, self.w, self.weight}"
+
 
 if __name__ == "__main__":
     e1: Edge = Edge(1, 2, 7)
