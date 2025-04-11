@@ -6,6 +6,7 @@ class EdgeWeightedGraph:
         self.adj: list[list[Edge]] = [[] for _ in range(V)]
         self.V = V
         self.E = 0
+        self.edges: list[Edge] = []
 
     def addEdge(self, e: Edge):
         v = e.either()
@@ -13,12 +14,16 @@ class EdgeWeightedGraph:
         self.adj[v].append(e)
         self.adj[w].append(e)
         self.E += 1
+        self.edges.append(e)
 
     def getAdj(self, v: int) -> list[Edge]:
         return self.adj[v]
 
     def getV(self):
         return self.V
+
+    def getEdges(self):
+        return self.edges
 
     def __repr__(self):
         s = ""
