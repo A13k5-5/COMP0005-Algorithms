@@ -16,7 +16,14 @@ class DirectedEdge:
     def __repr__(self):
         return f"({self.source}->{self.destination} {self.weight})"
 
+    def __lt__(self, other):
+        return self.weight < other.weight
+
+    def __eq__(self, other):
+        return self.weight == other.weight
+
 
 if __name__ == "__main__":
-    e: DirectedEdge = DirectedEdge(0, 1, 4.2)
-    print(e)
+    e1: DirectedEdge = DirectedEdge(0, 1, 4.2)
+    e2: DirectedEdge = DirectedEdge(0, 1, 4.2)
+    print(e1 == e2)
