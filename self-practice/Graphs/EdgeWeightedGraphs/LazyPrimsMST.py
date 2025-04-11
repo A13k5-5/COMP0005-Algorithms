@@ -37,6 +37,7 @@ class LazyPrimsMST:
         for e in g.getAdj(v):
             # If the edge is a crossing edge of a cut
             if not self.marked[e.other(v)]:
+                # pq uses __lt__ and __eq__ to compare edges
                 heapq.heappush(self.pq, e)
 
 
