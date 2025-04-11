@@ -14,7 +14,7 @@ class DirectedEdge:
         return self.destination
 
     def __repr__(self):
-        return f"{self.source, self.destination, self.weight}"
+        return f"({self.source}->{self.destination} {self.weight})"
 
 
 if __name__ == "__main__":
