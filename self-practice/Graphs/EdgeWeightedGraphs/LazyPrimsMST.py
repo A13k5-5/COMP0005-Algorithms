@@ -10,7 +10,7 @@ class LazyPrimsMST:
         self.weight: int = 0
         self.pq: list[Edge] = []
         self.visit(g, 0)
-        while len(self.pq) > 0:
+        while len(self.pq) > 0 and len(self.mst) < g.getV() - 1:
             e: Edge = heapq.heappop(self.pq)
             v = e.either()
             w = e.other(v)
