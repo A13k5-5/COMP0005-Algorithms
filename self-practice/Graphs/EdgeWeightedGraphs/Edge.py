@@ -4,20 +4,20 @@ class Edge:
         self.w: int = w
         self.weight = weight
 
-    def either(self):
+    def either(self) -> int:
         return self.v
 
-    def other(self, vertex: int):
+    def other(self, vertex: int) -> int:
         if vertex == self.v:
             return self.w
         elif vertex == self.w:
             return self.v
         raise Exception("Illegal argument")
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return self.weight < other.weight
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.weight == other.weight
 
 
