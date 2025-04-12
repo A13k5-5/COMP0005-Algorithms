@@ -10,20 +10,24 @@ class DijkstraSP:
         self.distTo[s] = 0.0
         self.edgeTo = [None for _ in range(g.getV())]
         self.pq = []
-        heapq.heappush(self.pq, (self.distTo[s], s))
+        heapq.heappush(self.pq, (0.0, s))
 
-        while len(self.pq) > 0:
+        visited = set()
+        while self.pq:
             dist, v = heapq.heappop(self.pq)
-            if dist > self.distTo[v]:
+            if v in visited:
                 continue
+            print(dist, v)
+            visited.add(v)
             for e in g.getAdj(v):
                 self.relax(e)
 
     def relax(self, e: DirectedEdge):
         v: int = e.getSource()
         w: int = e.getDestination()
-        if self.distTo[w] > self.distTo[v] + e.getWeight():
-            self.distTo[w] = self.distTo[v] + e.getWeight()
+        new_distance = self.distTo[v] + e.getWeight()
+        if self.distTo[w] > new_distance:
+            self.distTo[w] = new_distance
             self.edgeTo[w] = e
             heapq.heappush(self.pq, (self.distTo[w], w))
 
@@ -46,12 +50,13 @@ class DijkstraSP:
 
 
 if __name__ == "__main__":
-    # g: EdgeWeightedDigraph = loadEWD("tinyEWD.txt")
-    g: EdgeWeightedDigraph = EdgeWeightedDigraph(4)
-    g.addEdge(0, 1, 8)
-    g.addEdge(0, 3, 5)
-    g.addEdge(1, 2, 10)
-    g.addEdge(2, 3, - 17)
+    g: EdgeWeightedDigraph = loadEWD("NegativeEWG.txt")
+    print(g)
+    # g: EdgeWeightedDigraph = EdgeWeightedDigraph(4)
+    # g.addEdge(0, 1, 8)
+    # g.addEdge(0, 3, 5)
+    # g.addEdge(1, 2, 10)
+    # g.addEdge(2, 3, - 17)
     s = 0
     sp = DijkstraSP(g, s)
     for v in range(g.getV()):

@@ -40,7 +40,7 @@ class BellmanFordSP:
 
 
 if __name__ == "__main__":
-    g: EdgeWeightedDigraph = loadEWD("tinyEWD.txt")
+    g: EdgeWeightedDigraph = loadEWD("NegativeEWG.txt")
     s = 0
     sp = BellmanFordSP(g, s)
     for v in range(g.getV()):
