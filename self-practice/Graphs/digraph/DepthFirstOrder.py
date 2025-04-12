@@ -23,3 +23,13 @@ class DepthFirstOrder:
 
     def getPost(self):
         return self.post
+
+
+if __name__ == "__main__":
+    g: Digraph = Digraph(5)
+    g.addEdge(0, 1)
+    g.addEdge(1, 2)
+    g.addEdge(0, 2)
+    g.addEdge(3, 4)
+    dfs: DepthFirstOrder = DepthFirstOrder(g)
+    print(dfs.getReversePost())
