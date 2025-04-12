@@ -46,7 +46,12 @@ class DijkstraSP:
 
 
 if __name__ == "__main__":
-    g: EdgeWeightedDigraph = loadEWD("tinyEWD.txt")
+    # g: EdgeWeightedDigraph = loadEWD("tinyEWD.txt")
+    g: EdgeWeightedDigraph = EdgeWeightedDigraph(4)
+    g.addEdge(0, 1, 8)
+    g.addEdge(0, 3, 5)
+    g.addEdge(1, 2, 10)
+    g.addEdge(2, 3, - 17)
     s = 0
     sp = DijkstraSP(g, s)
     for v in range(g.getV()):
