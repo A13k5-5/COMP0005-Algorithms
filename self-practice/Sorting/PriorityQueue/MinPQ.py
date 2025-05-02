@@ -15,15 +15,19 @@ class MinPQ:
         if self.n < 1:
             raise Exception("Empty heap")
         min = self.pq[1]
+        # Exchange the first with the last one
         self.exch(1, self.n)
+        # Delete last
         self.n -= 1
         self.sink(1)
         return min
 
     def sink(self, k: int):
+        # While left child is less than current
         while 2 * k <= self.n:
             # Left child
             c = 2 * k
+            # Take the smaller child
             if c < self.n and self.isMore(c, c + 1):
                 c += 1
             if not self.isMore(c, k):
